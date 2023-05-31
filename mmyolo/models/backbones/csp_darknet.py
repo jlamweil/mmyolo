@@ -378,8 +378,8 @@ class YOLOXCSPDarknet(BaseBackbone):
     def build_stem_layer(self) -> nn.Module:
         """Build a stem layer."""
         return Focus(
-            3,
-            make_divisible(64, self.widen_factor),
+            self.input_channels,
+            make_divisible(self.arch_setting[0][0], self.widen_factor),
             kernel_size=3,
             norm_cfg=self.norm_cfg,
             act_cfg=self.act_cfg)
